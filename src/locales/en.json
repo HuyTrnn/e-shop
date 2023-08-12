@@ -1,0 +1,41 @@
+{
+    "homeVideo" : {
+      "title": "Minimalism lifestyle",
+      "description": "Along with simple design and durable materials, products from Camelia Brand bring many utilities to make your life easier, more optimal, and neater. Let's see..."
+    },
+  
+    "productType": {
+      "Backpacks": "Backpacks",
+      "Wallet": "Wallet",
+      "Tote": "Tote & Accessories",
+      "Bag": "CrossBody Bags"
+    },
+    "header": {
+      "about": "ABOUT",
+      "address": "ADDRESS",
+      "blog": "BLOG",
+      "membership": "MEMBERSHIP",
+      "searchPlaceholder" : "Enter product name"
+    },
+    "detailBtn": {
+      "detail" : "Detail"
+    },
+    "description": {
+      "product" : "Thông tin"
+    },
+    "footer": {
+      "companyName": "CAMELIA BRAND",
+      "store1": "Store 1: 633 Nguyễn Đình Chiểu, P.2, Q.3. HCM",
+      "store2": "Store 2: 71 Trần Quang Diệu, P14, Q3, HCM",
+      "hotline": "Hotline: 19001052",
+      "email": "thecameliavn@gmail.com",
+      "subscribeTitle": "SUBSCRIBE TO NEWSLETTER",
+      "subscribeDescription": "Stay updated with the latest products from Camelia Brand!",
+      "subscribePlaceholder": "Enter your email...",
+      "shouldSee": "YOU SHOULD SEE",
+      "introduction": "Introduction",
+      "paymentMethods": "Payment Methods",
+      "returnPolicy": "Return Policy",
+      "purchasePolicy": "Purchase Policy"
+    }
+  }

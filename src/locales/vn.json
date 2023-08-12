@@ -1,0 +1,42 @@
+
+  {
+    "homeVideo" : {
+      "title": "Lối sống tối giản",
+      "description": "Cùng với thiết kế đơn giản và chất liệu bền, các sản phẩm từ thương hiệu Camelia mang lại nhiều tiện ích để cuộc sống của bạn trở nên dễ dàng, tối ưu hơn và gọn gàng hơn. Hãy cùng xem..."
+    },
+    "productType": {
+        "Backpacks": "Ba lô",
+        "Wallet": "Ví",
+        "Tote": "Túi xách & Phụ kiện",
+        "Bag": "Túi xách chéo"
+      },
+      "header": {
+        "about": "GIỚI THIỆU",
+        "address": "ĐỊA CHỈ",
+        "blog": "BLOG",
+        "membership": "THÀNH VIÊN",
+        "searchPlaceholder" : "Nhập tên sản phẩm"
+      },
+      "detailBtn": {
+        "detail" : "Thông tin"
+      },
+      "description": {
+        "product" : "Thông tin"
+      },
+      "footer": {
+        "companyName": "CAMELIA BRAND",
+        "store1": "Cửa hàng 1: 633 Nguyễn Đình Chiểu, P.2, Q.3. HCM",
+        "store2": "Cửa hàng 2: 71 Trần Quang Diệu, P14, Q3, HCM",
+        "hotline": "Hotline: 19001052",
+        "email": "thecameliavn@gmail.com",
+        "subscribeTitle": "ĐĂNG KÝ NHẬN TIN",
+        "subscribeDescription": "Cập nhật những sản phẩm mới nhất từ Camelia Brand nhé!",
+        "subscribePlaceholder": "Nhập Email của bạn...",
+        "shouldSee": "BẠN NÊN XEM",
+        "introduction": "Giới thiệu",
+        "paymentMethods": "Phương Thức Thanh Toán",
+        "returnPolicy": "Chính Sách đổi trả",
+        "purchasePolicy": "Chính sách mua hàng"
+      }
+}
+  
