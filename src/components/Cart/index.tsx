@@ -31,7 +31,7 @@ function CartPage() {
   const ItemHeading = () => {
     return (
       <>
-        <div className=" h-[60px] border-b border-b-main h-fit">
+        <div className=" h-[60px] border-b border-b-white-800 h-fit">
           <h2 className="font-semibold text-4xl whitespace-wrap uppercase">
             {/* {detail.data.title} */}
             Test
@@ -81,7 +81,7 @@ function CartPage() {
         <button
         //   onClick={addToCart}
           type="button"
-          className="h-14 px-6 py-2 font-semibold rounded-xl bg-main hover:opacity-70 text-primary-50"
+          className="h-14 px-6 py-2 font-semibold rounded-xl bg-primary-800 hover:opacity-70 text-white-200"
         >
           Add to Cart
         </button>
@@ -99,7 +99,7 @@ function CartPage() {
           <div className="mx-[24px]">
             <ItemHeading />
             <div>
-              <div className="text-left border-b border-b-main pb-3">
+              <div className="text-left border-b border-b-white-800 pb-3">
                 {/* <span>{detail.data.description}</span> */}
               </div>
               <div>

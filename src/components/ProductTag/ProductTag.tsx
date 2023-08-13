@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import Image from "next/image";
 interface Products {
   item: {
     product_name: string;
     id: string;
-    image: any;
+    product_image: Array<string>;
     title: string;
     product_price: number;
     product_description: string;
@@ -23,13 +23,22 @@ const ProductTag: React.FC<Products> = ({ item }) => {
     setIsHovered(true);
   };
 
+  
+
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  
+      const getImage = (id : number) => {
+        item.product_image.map((image) => {
+          console.log(image);
+          
+        })
+      }
 
   const backgroundImage = !isHovered
-    ? item.image
-    : "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg";
+    ? getImage(0)
+    : getImage(1);
 
   return (
     <div
@@ -38,15 +47,17 @@ const ProductTag: React.FC<Products> = ({ item }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="rounded-xl bg-primary-50 p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 w-[250px] h-fit">
+      <div className="rounded-xl bg-white-200 p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 w-[250px] h-fit">
         <Link href={`/products/${item.id}`}>
           <div className="relative flex items-end overflow-hidden rounded-xl max-h-[260px] object-contain">
-            <img
+            <Image
               className="object-contain min-h-[240px] w-full"
-              src={backgroundImage}
+              src={backgroundImage || "" }
               alt="Hotel"
+              width={120}
+              height={200}
             />
-            <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg-primary-50 p-2 shadow-md">
+            <div className="absolute bottom-3 left-3 inline-flex items-center rounded-lg bg- p-2 shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-yellow-400"
@@ -77,8 +88,8 @@ const ProductTag: React.FC<Products> = ({ item }) => {
                 {Number(item.product_price)}đ
               </p>
 
-              <div className="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-primary-50 duration-100 ">
-                <button className="bg-primary-btn w-[120px] rounded-lg hover:bg-hoverColor">
+              <div className="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white-200 duration-100 ">
+                <button className="bg-primary-100 w-[120px] rounded-lg hover:bg-hoverColor">
                   {t("detailBtn.detail")}
                 </button>
               </div>

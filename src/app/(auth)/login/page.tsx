@@ -86,7 +86,7 @@ function LoginPage() {
           </div>
           <button
             type="submit"
-            className="bg-primary-btn text-primary-50 hover:opacity-90 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center"
+            className="bg-primary-100 text-white-200 hover:opacity-90 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center"
           >
             Login to your account
           </button>

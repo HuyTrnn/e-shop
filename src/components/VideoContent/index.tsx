@@ -12,7 +12,7 @@ function VideoContent() {
             <h2 className="font-semibold mb-2 text-4xl">{t("homeVideo.title")}</h2>
           </div>
           <div className="py-7 flex justify-center items-center flex-col">
-            <div className="video-content__description mb-8 relative max-w-[580px] flex justify-center text-center items-center mr-0  after:content-[''] after:bg-main after:w-[140px] after:h-[1px] after:absolute after:bottom-[-16px]">
+            <div className="video-content__description mb-8 relative max-w-[580px] flex justify-center text-center items-center mr-0  after:content-[''] after:bg-primary after:w-[140px] after:h-[1px] after:absolute after:bottom-[-16px]">
               {t("homeVideo.description")}
             </div>
 

@@ -2,8 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Wrappper from "@/components/LayoutWrapper";
+import Wrapper from "@/components/LayoutWrapper";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <meta name="csrf-token" content="{{ csrf_token() }}"></meta>
       <body className={inter.className}>
-        <Wrappper>
-        <Header/>
+        <Wrapper>
+          <Header />
           {children}
-        </Wrappper>
+          <Footer />
+        </Wrapper>
       </body>
     </html>
   );

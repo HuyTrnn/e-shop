@@ -38,10 +38,10 @@ function LanguageSwitcher() {
       </button>
       {!isOpen && <div className="ml-2">{selectedLanguage}</div>}
       {isOpen && (
-        <ul className="absolute left-0 top-[12px] mt-2 bg-primary-50 border border-gray-300 rounded-md shadow-lg ">
+        <ul className="absolute left-0 top-[12px] mt-2 bg-white-200 border border-gray-300 rounded-md shadow-lg ">
           <li>
             <button
-              className="block px-4 py-2 text-gray-800 hover:bg-main hover:text-primary-50 cursor-pointer"
+              className="block px-4 py-2 text-gray-800 hover:bg-primary-800 hover:text-white-200 cursor-pointer"
               onClick={() => handleChangeLanguage("vi")}
             >
               Vietnamese
@@ -49,7 +49,7 @@ function LanguageSwitcher() {
           </li>
           <li>
             <button
-              className="block px-4 py-2 text-gray-800 hover:bg-main hover:text-primary-50 cursor-pointer"
+              className="block px-4 py-2 text-gray-800 hover:bg-primary-800 hover:text-white-200 cursor-pointer"
               onClick={() => handleChangeLanguage("en")}
             >
               English

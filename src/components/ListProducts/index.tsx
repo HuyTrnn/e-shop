@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 interface Products {
   id: string;
   product_name: string;
-  image: any;
+  product_image: Array<string>;
   title: string;
   product_description: string;
   product_price: number;

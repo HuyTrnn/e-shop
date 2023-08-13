@@ -11,8 +11,8 @@ const ButtonSearch: React.FC = function () {
         type="text"
         placeholder={t("header.searchPlaceholder")}
       />
-      <button className="bg-primary-btn w-10 h-10 rounded">
-        <FiSearch className="mx-auto text-primary-50 text-lg" />
+      <button className="bg-primary-100 w-10 h-10 rounded">
+        <FiSearch className="mx-auto text-white-200 text-lg" />
       </button>
     </React.Fragment>
   );

@@ -26,15 +26,15 @@ const HeaderCollection = () => {
 
     return (
       <ul className="flex justify-center">
-        <li onClick={() => getCollectionByType("backpack")} className="flex flex-col items-center w-48 border-r border-r-primary-80 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
+        <li onClick={() => getCollectionByType("backpack")} className="flex flex-col items-center w-48 border-r border-r-white-400 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
           <GiLightBackpack className="text-6xl" />
           {productType.Backpacks}
         </li>
-        <li onClick={() => getCollectionByType("wallet")} className="flex flex-col items-center w-48 border-r border-r-primary-80 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
+        <li onClick={() => getCollectionByType("wallet")} className="flex flex-col items-center w-48 border-r border-r-white-400 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
           <GiWallet className="text-6xl" />
           {productType.Wallet}
         </li>
-        <li onClick={() => getCollectionByType("tote")} className="flex flex-col items-center w-48 border-r border-r-primary-80 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
+        <li onClick={() => getCollectionByType("tote")} className="flex flex-col items-center w-48 border-r border-r-white-400 hover:text-hoverColor transition duration-300 ease-out cursor-pointer">
           <BsBagHeart className="text-6xl" />
           {productType.Tote}
         </li>
