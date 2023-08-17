@@ -24,7 +24,9 @@ export default function Title({title} : {title: string}) {
   return (
     <div className="relative flex items-center">
     <h2 className="text-4xl my-8 mr-4 min-w-[190px] uppercase">{t(title)}</h2>
-    {pathname == "/" && <div className="w-full line h-0.5 bg-primary-800"></div>}
+    <hr className="bg-black text-black border-slate-500 border-t-[0.5px] w-full my-8"></hr>
+
+    {/* {pathname == "/" && <div className="w-full line h-0.5 bg-primary-800"></div>} */}
   </div>
   )
 }

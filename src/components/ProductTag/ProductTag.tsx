@@ -7,7 +7,7 @@ interface Products {
   item: {
     product_name: string;
     id: string;
-    product_image: Array<string>;
+    product_images: Array<string>;
     title: string;
     product_price: number;
     product_description: string;
@@ -23,22 +23,18 @@ const ProductTag: React.FC<Products> = ({ item }) => {
     setIsHovered(true);
   };
 
-  
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
   
       const getImage = (id : number) => {
-        item.product_image.map((image) => {
-          console.log(image);
-          
+        item.product_images.map((image) => {
         })
       }
 
   const backgroundImage = !isHovered
-    ? getImage(0)
-    : getImage(1);
+    ? item.product_images[0]
+    : item.product_images[1];
 
   return (
     <div
@@ -51,9 +47,10 @@ const ProductTag: React.FC<Products> = ({ item }) => {
         <Link href={`/products/${item.id}`}>
           <div className="relative flex items-end overflow-hidden rounded-xl max-h-[260px] object-contain">
             <Image
-              className="object-contain min-h-[240px] w-full"
-              src={backgroundImage || "" }
+              className="object-cover min-h-[240px] w-full"
+              src={backgroundImage}
               alt="Hotel"
+              quality={100}
               width={120}
               height={200}
             />

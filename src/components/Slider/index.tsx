@@ -1,30 +1,28 @@
-'use client'
+"use client";
 import { RootState, useAppDispatch } from "@/store";
 import { fetchImgSlider } from "@/store/thunks/fetchImage";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 interface Props {
   props: string;
+  data: any
 }
 
-const Slider: React.FC<Props> = ({ props }) => {
+const Slider: React.FC<Props> = ({ props, data }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const img = useSelector((state: RootState) => state.imgSlider);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchImgSlider());
-    console.log(img);
-    
-  }, [dispatch, img.length]);
+  // useEffect(  () => {
+  //   dispatch(fetchImgSlider());
+  // }, [dispatch, img.length]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % img.length);
+      setCurrentImage((prevImage) => (prevImage + 1) % data.length);
     }, 4000);
-
     return () => {
       clearInterval(timer);
     };
@@ -43,12 +41,12 @@ const Slider: React.FC<Props> = ({ props }) => {
   };
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${img})`,
+    backgroundImage: `url(${data[currentImage]})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "100%",
-    minHeight: "500px",
+    minHeight: "700px",
     maxHeight: "800px",
     transition: "background-image 0.5s ease-in-out",
   };
@@ -68,7 +66,7 @@ const Slider: React.FC<Props> = ({ props }) => {
       </div>
 
       <div className="flex items-center justify-center ">
-        {img.map((image: any, index: number) =>
+        {data.map((image: any, index: number) =>
           props ? (
             <div
               key={index}

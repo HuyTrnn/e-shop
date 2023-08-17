@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 
 // import { logo } from "../../constant/constant";
@@ -8,7 +8,8 @@ import ButtonSearch from "../Button";
 import HeaderCollection from "./HeaderCollection";
 import HeaderTop from "./HeaderTop";
 import Link from "next/link";
-
+import logo from "@/assets/imgs/mainlogo.png";
+import Image from "next/image";
 function Header() {
   // const quantity = useSelector((state: RootState) => state.cart.data);
   const { t } = useTranslation();
@@ -26,40 +27,41 @@ function Header() {
         </div>
 
         <div className="header-bottom bg-white-200">
-          <div className="py-1.5">
-            <div className="h-full px-7 mx-36 border-b border-b-white-400">
-              <div className="mb-3.5 w-full flex justify-between items-center ">
+          <div className="py-1.5 m-auto flex justify-center items-center max-w-[1200px]">
+            <div className="h-full px-7 mx-36 border-b border-b-white-400 w-full m-auto">
+              <div className="mb-3.5 w-full flex justify-between items-center max-w-[1200px]">
                 <div className="flex-1 flex ">
                   <ul className="block lg:flex justify-between w-full">
-                    <li className="flex-1 cursor-pointer">
-                      <Link href="/about">
-                      {t("header.about")}</Link>
-                    </li>
-                    <li className="flex-1 cursor-pointer">
-                      {t("header.address")}
-                    </li>
+                    <Link href="/about">
+                      <li className="cursor-pointer">{t("header.about")}</li>
+                    </Link>
+                    <Link href="/membership">
+                      <li className="cursor-pointer">{t("header.address")}</li>
+                    </Link>
                   </ul>
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 flex justify-center items-center">
                   <a href="/" className="cursor-pointer">
-                    {/* <img alt="" className="w-36 mx-auto" src={logo.url} /> */}
+                    <Image src={logo} alt="logo" width={150} height={58} />
                   </a>
                 </div>
 
                 <div className=" flex flex-1">
                   <ul className=" block lg:flex justify-between w-full">
-                    <li className="flex-1 cursor-pointer">
-                      {t("header.blog")}
-                    </li>
-                    <li className="flex-1 cursor-pointer">
-                      {t("header.membership")}
-                    </li>
+                    <Link href="/blog">
+                      <li className="cursor-pointer">{t("header.blog")}</li>
+                    </Link>
+                    <Link href="/membership">
+                      <li className="cursor-pointer">
+                        {t("header.membership")}
+                      </li>
+                    </Link>
                   </ul>
                 </div>
               </div>
               <div className="header-navbar p-1.5 border-t border-t-primary-80 bg-white-200">
-                <HeaderCollection/>
+                <HeaderCollection />
               </div>
             </div>
           </div>

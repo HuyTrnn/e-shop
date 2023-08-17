@@ -1,15 +1,23 @@
-"use client";
+
 import { RootState } from "@/store";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import img from '@/assets/imgs/img_instagram1.jpg'
+import img from '@/assets/imgs/img_instagram2.jpg'
+
+export const metadata = {
+  title: 'About us',
+  openGraph: {
+    title: 'Blog',
+  },
+}
 const AboutPage = function () {
+  
 
   return (
-    <div className="m-auto">
-      <div className="px-8 flex flex-col">
+    <div className="m-auto flex justify-center items-center">
+      <div className="px-8 flex flex-col max-w-[1200px]">
       <div>
-        <h2 className="text-[24px] uppercase mt-5 mb-[15px]">About</h2>
+        <h2 className="text-[32px] uppercase mt-5 mb-[15px]">About</h2>
         <div className="flex flex-col w-full justify-center items-center">
           <strong className="text-[26px]">Welcome to Camelia</strong>
           <span className="text-[14px]">
