@@ -12,6 +12,7 @@ type Inputs = {
 }
 function LoginPage() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,7 +22,9 @@ function LoginPage() {
   const { push } = useRouter();
   
   const onSubmit: SubmitHandler<Inputs> = (data) =>  {
-    dispatch(loginToken(data))
+    dispatch(loginToken(data)).then(() => {
+      router.push('/')
+    })
   };
   const navigate = () => {
     console.log("click");
@@ -38,7 +41,7 @@ function LoginPage() {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="text-sm font-medium text-gray-900 block mb-2">
-              Your email : eve.holt@reqres.in
+              Your email 
             </label>
             <input
               type="email"
@@ -52,7 +55,7 @@ function LoginPage() {
           </div>
           <div>
             <label className="text-sm font-medium text-gray-900 block mb-2">
-              Your password : cityslicka
+              Your password 
             </label>
             <input
               type="password"

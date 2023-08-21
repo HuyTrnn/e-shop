@@ -3,10 +3,10 @@ import axios from "axios";
 
 const fetchProductDetail = createAsyncThunk(
   "productDetail/fetchProductDetail",
-  async (types) => {
+  async (id: string) => {
     try {
       const response = await axios.get(
-        `http://blog.test:8080/api/types/${types}`
+        `http://blog.test:8080/api/products/${id}`
       );
       return response.data;
     } catch (error: any) {

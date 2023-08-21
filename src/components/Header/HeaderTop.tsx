@@ -1,7 +1,32 @@
 import ButtonSearch from "../Button";
 import LanguageSwitcher from "../Button/LanguageButton";
+import {AiTwotonePhone} from 'react-icons/ai'
+import {GrMail} from "react-icons/gr"
+import {BsCart4} from "react-icons/bs"
+import { useEffect, useState } from "react";
+import Bill from "../Bill";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "@/store";
+import { fetchCart } from "@/store/thunks/fetchCart";
+
 
 const HeaderTop = () => {
+  const [toggle, setToggle] = useState(false)
+  const quantity = useSelector((state: RootState) => state.bill.cartData.items);
+  const [bill, setBill] = useState(false)
+  function handleClick() {
+    setToggle(!toggle)
+  }
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [quantity, dispatch])
+
+  const getBill = () => {
+    setBill(!bill)
+  }
+
     return (
       <div className="wrapper h-full px-7 sticky top-0 bg-white-600">
         <div className="inner flex h-full justify-between text-center">
@@ -14,12 +39,13 @@ const HeaderTop = () => {
                 <LanguageSwitcher />
               </li>
               <li className="leading-6 flex mr-3 items-center hidden lg:flex">
-                {/* <img alt="" className="w-3 mr-1" src={logo.phone} /> */}
+               
+                <AiTwotonePhone className="w-3 mr-1"/>
                 <span>19001052</span>
               </li>
 
               <li className="leading-6 flex mr-3 items-center hidden lg:flex">
-                {/* <img alt="" className="w-3 mr-1" src={logo.email} /> */}
+                <GrMail className="w-3 mr-1"/>
                 thecameliavn@gmail.com
               </li>
               <li className="leading-6 flex mr-3 items-center">
@@ -28,15 +54,15 @@ const HeaderTop = () => {
 
               <li
                 className="leading-6 flex mr-1 items-center relative"
+                onClick={handleClick}
               >
-                <button>
-                  {/* <img alt="" className="w-7 h-7 " src={logo.cart}></img> */}
-                  {/* {totalQuantity > 0 && (
-                    <span className="bg-red-500 text-white-200 text-xs rounded-full w-5 h-5 flex items-center justify-center ml-1 absolute bg-hoverColor bottom-0 right-[18px]">
-                      {totalQuantity}
+                <button onClick={getBill}>
+                  <BsCart4 className="w-7 h-7 "/>
+                    <span className="bg-red-500 text-white-200 text-xs rounded-full w-5 h-5 flex items-center justify-center ml-1 absolute bg-hoverColor top-0 right-[-8px]">
+                      {quantity.length}
                     </span>
-                  )} */}
                 </button>
+                {bill && <Bill onBill={getBill} toggle={toggle}/>}
               </li>
             </ul>
           </div>

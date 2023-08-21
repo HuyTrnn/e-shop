@@ -3,6 +3,9 @@ import loginReducer from "./slices/loginSlice";
 import sliderReducer from "./slices/sliderSlice";
 import productsReducer from "./slices/productSlice";
 import collectionsReducer from "./slices/collectionSlice";
+import productDetailReducer from "./slices/productDetail";
+import billReducer from "./slices/billSlice"
+import addToCartReducer from "./slices/cartSlice"
 import { useDispatch } from "react-redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -11,7 +14,7 @@ const persistConfig = {
   key: "root",
   storage,
   whitelist: ["login"],
-  blacklist: ["post", "signUp"],
+  blacklist: ["post", "signUp", "addToCart", "bill"],
 };
 
 const rootReducer = combineReducers({
@@ -19,6 +22,9 @@ const rootReducer = combineReducers({
   imgSlider: sliderReducer,
   products: productsReducer,
   collections: collectionsReducer,
+  productDetail: productDetailReducer,
+  addToCart: addToCartReducer,
+  bill : billReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

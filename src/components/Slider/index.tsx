@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 interface Props {
   props: string;
-  data: any
+  data?: any;
 }
 
 const Slider: React.FC<Props> = ({ props, data }) => {
@@ -15,13 +15,25 @@ const Slider: React.FC<Props> = ({ props, data }) => {
   const img = useSelector((state: RootState) => state.imgSlider);
   const dispatch = useAppDispatch();
 
-  // useEffect(  () => {
-  //   dispatch(fetchImgSlider());
-  // }, [dispatch, img.length]);
+  const slider = [
+    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img3.jpg?v=174",
+    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img1.jpg?v=174",
+    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img4.jpg?v=174",
+  ];
+
+  const [image, setImage] = useState(slider);
+
+  // useEffect(() => {
+  //   if (data.lenght === 0) {
+  //     setImage(slider);
+  //   } else {
+  //     setImage(data);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % data.length);
+      setCurrentImage((prevImage) => (prevImage + 1) % image.length);
     }, 4000);
     return () => {
       clearInterval(timer);
@@ -29,11 +41,13 @@ const Slider: React.FC<Props> = ({ props, data }) => {
   }, []);
 
   const handleNextSlider = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % img.length);
+    setCurrentImage((prevImage) => (prevImage + 1) % image.length);
   };
 
   const handlePreviousSlider = () => {
-    setCurrentImage((prevImage) => (prevImage - 1 + img.length) % img.length);
+    setCurrentImage(
+      (prevImage) => (prevImage - 1 + image.length) % image.length
+    );
   };
 
   const handleIndexClick = (index: number) => {
@@ -41,7 +55,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
   };
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${data[currentImage]})`,
+    backgroundImage: `url(${image[currentImage]})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -66,7 +80,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
       </div>
 
       <div className="flex items-center justify-center ">
-        {data.map((image: any, index: number) =>
+        {image.map((image: any, index: number) =>
           props ? (
             <div
               key={index}

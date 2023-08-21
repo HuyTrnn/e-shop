@@ -22,7 +22,7 @@ function Header() {
   return (
     <React.Fragment>
       <header id="header" className="w-full">
-        <div className="header-top sticky top-0  h-12 bg-white-600 py-1 bg-white-600">
+        <div className="header-top sticky top-0 z-50 h-12 bg-white-600 py-1 bg-white-600">
           <HeaderTop />
         </div>
 

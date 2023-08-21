@@ -2,8 +2,10 @@
 import { useAppDispatch } from "@/store";
 import { register } from "@/store/thunks/register";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BsFacebook, BsGoogle } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 function RegisterPage() {
   const [userName, setUserName] = useState<string>("");
@@ -11,21 +13,24 @@ function RegisterPage() {
   const [password, setPassword] = useState<string>("");
   const [checkPassword, setCheckPassword] = useState<string>("");
   const dispatch = useAppDispatch();
-
+  const router = useRouter();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const newUser = {
-      name: "admin",
-      email: userName,
+      name: userName,
+      email: email,
       password: password,
     };
 
     if (!confirmPassword()) {
       return;
     }
-
-    dispatch(register(newUser));
+    console.log(newUser);
+    dispatch(register(newUser)).then(() => {
+      toast.success("Đăng ký thành công!")
+      router.push('/login')
+    });
   };
 
   const confirmPassword = () => {

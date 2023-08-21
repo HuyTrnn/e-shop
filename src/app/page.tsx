@@ -4,15 +4,15 @@ import Slider from "@/components/Slider";
 import VideoContent from "@/components/VideoContent";
 import InstagramSections from "@/components/InstaSection";
 import ListItem from "@/components/ListProducts";
-import { getAllProduct } from "@/apis/productApi";
 import { GetStaticPropsContext } from "next";
 import axios from "axios";
 import { getData } from "@/apis/sliderApi";
 import { getTypes } from "@/apis/backPack";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   if (!params) return { props: {} };
-  const slider = await getData();
   const wallets = await getTypes({ param: "wallets" });
   const backpacks = await getTypes({ param: "backpacks" });
   const totes = await getTypes({ param: "totes" });
@@ -20,7 +20,6 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 
   return {
     props: {
-      slider,
       wallets,
       backpacks,
       totes,
@@ -60,12 +59,14 @@ async function HomePage({ slider }: { slider: any }) {
   };
   return (
     <>
+      <Header />
       <div className="home-page">
-        <Slider props="" data={img.props.slider?.data} />
+        <Slider props=""  />
         <VideoContent />
         <ListContent />
-        <InstagramSections/>
+        <InstagramSections />
       </div>
+      <Footer />
     </>
   );
 }

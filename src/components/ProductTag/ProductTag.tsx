@@ -9,6 +9,7 @@ interface Products {
     id: string;
     product_images: Array<string>;
     title: string;
+    introduce: string;
     product_price: number;
     product_description: string;
     rating: any;
@@ -26,15 +27,7 @@ const ProductTag: React.FC<Products> = ({ item }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  
-      const getImage = (id : number) => {
-        item.product_images.map((image) => {
-        })
-      }
 
-  const backgroundImage = !isHovered
-    ? item.product_images[0]
-    : item.product_images[1];
 
   return (
     <div
@@ -48,7 +41,7 @@ const ProductTag: React.FC<Products> = ({ item }) => {
           <div className="relative flex items-end overflow-hidden rounded-xl max-h-[260px] object-contain">
             <Image
               className="object-cover min-h-[240px] w-full"
-              src={backgroundImage}
+              src={!isHovered ? item.product_images[0] : item.product_images[1]}
               alt="Hotel"
               quality={100}
               width={120}
@@ -77,7 +70,7 @@ const ProductTag: React.FC<Products> = ({ item }) => {
             </h2>
             <p className="mt-1 text-[12px] text-slate-400 line-clamp-2">
               {/* {t("description.product")} */}
-              {item.product_description}
+              {item.introduce}
             </p>
 
             <div className="mt-3 flex items-end justify-between">

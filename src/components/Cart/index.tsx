@@ -1,47 +1,39 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchProductDetail } from "../../store/thunks/fetchProductDetail";
-import { addItems } from "../../store/slices/cartSlice";
 import Slider from "../../components/Slider";
+import { ProductsDetail } from "@/types/types";
+import { addToCart } from "@/store/thunks/addToCart";
+import { RootState, useAppDispatch } from "@/store";
+import axios from "axios";
 
-function CartPage() {
-  const [quantity, setQuantity] = useState(1);
-//   const detail = useSelector((state) => state.detail);
-//   const { isAuthenticated } = useSelector((state) => state.login);
-//   const loading = useSelector((state) => state.detail.loading);
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-//   const { id } = useParams();
+const CartPage = function ({ data }: { data: ProductsDetail }) {
+  const [quantity, setQuantity] = useState<string>();
+  const detail = useSelector((state: RootState) => state.productDetail.data);
+  const token = useSelector((state: RootState) => state.login.access_token)
+  const dispatch = useAppDispatch();
+  const cart = useSelector((state: RootState) => state.addToCart)
+  const addItem = () => {
+    let itemData = {
+      quantity: quantity,
+      productId: detail.id,
+    };
+    dispatch(addToCart(itemData))
+  };
 
-//   useEffect(() => {
-//     dispatch(fetchProductDetail(id));
-//   }, [dispatch, id]);
-
-//   const addToCart = () => {
-//     if (!isAuthenticated) {
-//       navigate("/login");
-//     } else {
-//       dispatch(addItems({ ...detail.data, quantity }));
-//     }
-//   };
-
-    const loading = true
+  const loading = true;
 
   const ItemHeading = () => {
     return (
       <>
         <div className=" h-[60px] border-b border-b-white-800 h-fit">
           <h2 className="font-semibold text-4xl whitespace-wrap uppercase">
-            {/* {detail.data.title} */}
-            Test
+            {detail.product_name}
           </h2>
         </div>
-        <div className="py-5 flex text-2xl">
-          <span>
-            {/* {detail.data.price} */}
-                    Test$
-          </span>
+        <div className="py-5 flex text-2xl font-bold text-hoverColor">
+          <span>{detail.product_price}đ</span>
         </div>
       </>
     );
@@ -50,10 +42,10 @@ function CartPage() {
   const ItemInfo = () => {
     return (
       <ul className="text-left list-disc ml-6">
-        <li>Kích thước: 42cm x 28cm x 15cm</li>
-        <li>Chất liệu: High Quality Oxford chống nước</li>
-        <li>Bao gồm 7 ngăn: 1 ngăn chính, 1 ngăn chống sốc, 2</li>
-        <li>Ngăn chống sốc đựng vừa laptop 14 inch</li>
+        <li>{detail.size}</li>
+        <li>{detail.material}</li>
+        <li>{detail.contain}</li>
+        <li>{detail.other}</li>
         <li>Nhiều ngăn nhỏ tiện lợi phía trong balo</li>
       </ul>
     );
@@ -70,7 +62,7 @@ function CartPage() {
           <div>
             <input
               className="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1"
-            //   onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => setQuantity(e.target.value)}
               type="number"
               value={quantity}
               min="1"
@@ -79,9 +71,9 @@ function CartPage() {
         </div>
 
         <button
-        //   onClick={addToCart}
+          onClick={addItem}
           type="button"
-          className="h-14 px-6 py-2 font-semibold rounded-xl bg-primary-800 hover:opacity-70 text-white-200"
+          className="h-14 px-6 py-2 font-semibold rounded-xl bg-primary-800 text-white-200 bg-hoverColor hover:text-hoverColor hover:bg-white-200"
         >
           Add to Cart
         </button>
@@ -94,13 +86,18 @@ function CartPage() {
       {true && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 flex flex-col lg:flex-row">
           <div className="min-w-[60%]">
-            <Slider props={"imageValue"} />
+            <Slider props={"imageValue"} data={detail.product_images} />
           </div>
           <div className="mx-[24px]">
             <ItemHeading />
             <div>
               <div className="text-left border-b border-b-white-800 pb-3">
                 {/* <span>{detail.data.description}</span> */}
+                Chẳng ai muốn phải lục tìm món đồ mình cần trong một chiếc balo.
+                Để chuẩn bị cho hành trang gọn gàng, sắp xếp mọi thứ tối ưu hơn
+                thì bạn không thể bỏ lỡ Slash Backpack. Rung động trong thiết kế
+                ngăn đa dạng và thể tích chứa lớn, sẵn sàng giúp bạn tự tin gói
+                gọn nhiều món đồ cần mang theo.
               </div>
               <div>
                 <h3 className="py-3 text-2xl flex uppercase">
@@ -117,6 +114,6 @@ function CartPage() {
   ) : (
     <div className="h-[60vh] text-5xl">loading...</div>
   );
-}
+};
 
 export default CartPage;
