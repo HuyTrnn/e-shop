@@ -7,9 +7,12 @@ import { ProductsDetail } from "@/types/types";
 import { addToCart } from "@/store/thunks/addToCart";
 import { RootState, useAppDispatch } from "@/store";
 import axios from "axios";
+import SliderProduct from "../Slider/slideProduct";
+import { toast } from "react-toastify";
+import { fetchCart } from "@/store/thunks/fetchCart";
 
 const CartPage = function ({ data }: { data: ProductsDetail }) {
-  const [quantity, setQuantity] = useState<string>();
+  const [quantity, setQuantity] = useState<string>("1");
   const detail = useSelector((state: RootState) => state.productDetail.data);
   const token = useSelector((state: RootState) => state.login.access_token)
   const dispatch = useAppDispatch();
@@ -19,7 +22,10 @@ const CartPage = function ({ data }: { data: ProductsDetail }) {
       quantity: quantity,
       productId: detail.id,
     };
-    dispatch(addToCart(itemData))
+    dispatch(addToCart(itemData)).then(() => {
+      toast.success("add item success!")
+      dispatch(fetchCart())
+    })
   };
 
   const loading = true;
@@ -86,7 +92,7 @@ const CartPage = function ({ data }: { data: ProductsDetail }) {
       {true && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 flex flex-col lg:flex-row">
           <div className="min-w-[60%]">
-            <Slider props={"imageValue"} data={detail.product_images} />
+            <SliderProduct props={"imageValue"} data={detail.product_images} />
           </div>
           <div className="mx-[24px]">
             <ItemHeading />

@@ -21,10 +21,11 @@ const HeaderTop = () => {
 
   useEffect(() => {
     dispatch(fetchCart());
-  }, [quantity, dispatch])
+  }, [dispatch])
 
   const getBill = () => {
     setBill(!bill)
+    dispatch(fetchCart());
   }
 
     return (
@@ -40,12 +41,12 @@ const HeaderTop = () => {
               </li>
               <li className="leading-6 flex mr-3 items-center hidden lg:flex">
                
-                <AiTwotonePhone className="w-3 mr-1"/>
+                <AiTwotonePhone className="w-3 mr-1 text-hoverColor text-base"/>
                 <span>19001052</span>
               </li>
 
               <li className="leading-6 flex mr-3 items-center hidden lg:flex">
-                <GrMail className="w-3 mr-1"/>
+                <GrMail className="w-3 mr-1  text-hoverColor text-base"/>
                 thecameliavn@gmail.com
               </li>
               <li className="leading-6 flex mr-3 items-center">
@@ -59,7 +60,7 @@ const HeaderTop = () => {
                 <button onClick={getBill}>
                   <BsCart4 className="w-7 h-7 "/>
                     <span className="bg-red-500 text-white-200 text-xs rounded-full w-5 h-5 flex items-center justify-center ml-1 absolute bg-hoverColor top-0 right-[-8px]">
-                      {quantity.length}
+                      { quantity ? quantity.length : "0"}
                     </span>
                 </button>
                 {bill && <Bill onBill={getBill} toggle={toggle}/>}

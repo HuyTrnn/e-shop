@@ -6,6 +6,8 @@ import { convertToNumber } from "@/utils/convertNumber";
 import { RootState, useAppDispatch } from "@/store";
 import { fetchCart } from "@/store/thunks/fetchCart";
 import { convertVND } from "@/utils/convertToVND";
+import axios from "axios";
+import Link from "next/link";
 // import { convertToNumber } from "../../utils/numberUtils";
 
 function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
@@ -17,24 +19,26 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
     onBill(false);
   }
 
-  useEffect(() => {
+  async function handleDelete(id: number) {
+    const response = await axios.delete(
+      `http://blog.test:8080/api/delete-item/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: `application/json`,
+          ContentType: "application/json",
+        },
+      }
+    );
     dispatch(fetchCart());
-  }, [dispatch]);
-
-  // function handleDelete(id: number) {
-  //   dispatch(removeItem(id));
-  // }
-
-  async function handleClear() {
-    console.log(token);
-    // dispatch(fetchCart())
-    console.log(bill);
   }
+
+  async function handleClear() {}
 
   const ListItem = () => {
     return (
       <React.Fragment>
-        {bill.items.length === 0 ? (
+        {!bill.items ? (
           <div className="flex justify-center items-center w-[200px]">
             Cart is empty...
           </div>
@@ -67,7 +71,7 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
               </td>
               <td className="font-primary font-medium px-4 sm:px-6 py-4">
                 <button
-                  // onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item.cart_detail_id)}
                   className=""
                 >
                   <svg
@@ -100,9 +104,12 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
         id="bill"
         className="container flex fixed top-0 right-0   mx-auto mb-20 min-w-[100vw] min-h-screen z-50 transition ease-in-out delay-150"
       >
-        <div className="overlay w-full opacity-50 bg-white-800 z-50 transition ease-in-out delay-150"></div>
+        <div
+          onClick={back}
+          className="overlay w-full opacity-50 bg-white-800 z-50 transition ease-in-out delay-150"
+        ></div>
 
-        <div className="w-fit max-w-[600px] h-screen float-right z-50 bg-white-200 transition ease-in-out delay-150">
+        <div className="w-fit max-w-[600px] h-full min-h-[100vh] float-right z-50 bg-white-200 transition ease-in-out delay-150">
           <h1 className="leading-relaxed font-primary font-extrabold text-4xl text-center text-palette-primary mt-4 py-2 sm:py-4">
             Your Cart
           </h1>
@@ -135,7 +142,7 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
                   <td className="font-primary text-lg text-palette-primary font-medium px-4 sm:px-6 py-4">
                     <span className="text-xl">
                       {" "}
-                      {convertVND(bill.total_price)}
+                      {convertVND(bill.total_price) || "0"}
                     </span>
                   </td>
                   <td></td>
@@ -144,8 +151,8 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
             </table>
           </div>
           <div className="max-w-sm mx-auto space-y-4 px-2">
-            <a
-              href="/"
+            <Link
+              href="/checkout"
               aria-label="checkout-products"
               className="bg-hoverColor text-white text-lg font-primary font-semibold pt-2 pb-1 leading-relaxed flex  justify-center items-center focus:ring-1 focus:ring-palette-light focus:outline-none w-full hover:bg-palette-dark rounded-sm"
             >
@@ -165,7 +172,7 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
                   d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"
                 ></path>
               </svg>
-            </a>
+            </Link>
             <button
               onClick={back}
               aria-label="back-to-products"
@@ -194,7 +201,27 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
     );
   };
 
-  return <Detail />;
+  return token ? (
+    <Detail />
+  ) : (
+    <div
+      id="bill"
+      className="container flex fixed top-0 right-0   mx-auto mb-20 min-w-[100vw] min-h-screen z-50 transition ease-in-out delay-150"
+    >
+      <div
+        onClick={back}
+        className="overlay w-full opacity-50 bg-white-800 z-50 transition ease-in-out delay-150"
+      ></div>
+
+      <div className="w-fit max-w-[600px] h-full min-h-[100vh] float-right z-50 bg-white-200 transition ease-in-out delay-150">
+        <Link href="/login">
+          <h1 className="leading-relaxed cursor-pointer font-primary font-extrabold text-4xl text-center text-primary-100 mt-4 py-2 sm:py-4">
+            Please login to continue...
+          </h1>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default Bill;

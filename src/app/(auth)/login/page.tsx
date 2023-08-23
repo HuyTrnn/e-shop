@@ -1,47 +1,61 @@
 "use client";
-import { useAppDispatch } from "@/store";
+import { RootState, useAppDispatch } from "@/store";
 import { loginToken } from "@/store/thunks/login";
 import Link from "next/link";
 import React, { useState } from "react";
 import { redirect, useRouter } from "next/navigation";
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 type Inputs = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 function LoginPage() {
   const dispatch = useAppDispatch();
+  const isAdmin = useSelector((state: RootState) => state.login.isAdmin);
   const router = useRouter();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>();
   const { push } = useRouter();
-  
-  const onSubmit: SubmitHandler<Inputs> = (data) =>  {
-    dispatch(loginToken(data)).then(() => {
-      router.push('/')
-    })
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    try {
+      dispatch(loginToken(data)).then(() => {
+        if (isAdmin) {
+          toast.success("Login admin success!");
+          router.push("/admin/dashboard");
+        } else {
+          toast.success("Login success!");
+          router.push("/");
+        }
+      });
+    } catch (err) {
+      toast.error("Login fail! Please try again later.");
+      window.location.reload();
+    }
   };
-  const navigate = () => {
-    console.log("click");
-    push('/')
-  }
+  const navigate = () => {};
 
   return (
     <div className="bg-white shadow rounded-lg md:mt-0 w-full sm:max-w-screen-sm xl:p-0 h-[100vh] mx-auto">
       <div className="p-6 w-full sm:p-8 lg:p-16 space-y-8 flex flex-col align-center texts-center justify-center">
-        <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 " onClick={ navigate}>
+        <h2
+          className="text-2xl lg:text-3xl font-bold text-gray-900 "
+          onClick={navigate}
+        >
           Sign in to CAMELIA
         </h2>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="text-sm font-medium text-gray-900 block mb-2">
-              Your email 
+              Your email
             </label>
             <input
               type="email"
@@ -55,7 +69,7 @@ function LoginPage() {
           </div>
           <div>
             <label className="text-sm font-medium text-gray-900 block mb-2">
-              Your password 
+              Your password
             </label>
             <input
               type="password"

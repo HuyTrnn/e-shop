@@ -14,11 +14,10 @@ import { TbDiscount2 } from "react-icons/tb";
 import logo from "@/assets/imgs/mainlogo.png";
 function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  
   const handleToggle = () => {
     setSidebarOpen(!sidebarOpen);
     console.log(sidebarOpen);
-    
   };
 
   return (
@@ -48,14 +47,14 @@ function SideBar() {
           </MenuItem>
         </SubMenu>
         <SubMenu icon={<TbDiscount2 className="text-hoverColor"/>} label="Products">
-          <MenuItem component={<Link href="/products" />}>
+          <MenuItem component={<Link href="/admin/products" />}>
             All products
           </MenuItem>
           <SubMenu label="Change infomation">
-            <MenuItem component={<Link href="/admin/addproducts" />}>
+            <MenuItem component={<Link href="/admin/add/product" />}>
               Add product
             </MenuItem>
-            <MenuItem component={<Link href="/admin/productbytypes" />}>
+            <MenuItem component={<Link href="/admin/product-type" />}>
               Types Product
             </MenuItem>
           </SubMenu>
@@ -63,14 +62,14 @@ function SideBar() {
         <SubMenu icon={<BsFillImageFill className="text-hoverColor"/>} label="Website">
           <MenuItem
             icon={<BsFillImageFill className="text-hoverColor"/>}
-            component={<Link href="/designwebsite/slide" />}
+            component={<Link href="/admin/slider" />}
           >
             Slider
           </MenuItem>
         </SubMenu>
         <MenuItem
           icon={<BsCurrencyDollar className="text-hoverColor"/>}
-          component={<Link href="/admin/renevue" />}
+          component={<Link href="/admin/dashboard" />}
         >
           Reports
         </MenuItem>

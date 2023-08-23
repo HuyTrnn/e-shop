@@ -1,6 +1,14 @@
 import Image from "next/image";
 import React from "react";
 import poster from "@/assets/imgs/poster.png";
+
+export const metadata = {
+  title: 'MemberShip',
+  openGraph: {
+    title: 'Blog',
+  },
+}
+
 export default function MembershipPage() {
   return (
     <div className="m-auto flex justify-center items-center">

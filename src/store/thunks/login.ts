@@ -9,7 +9,7 @@ interface DataUser {
 interface LoginResponse {
   token: any;
   access_token: null;
-
+  is_admin: boolean;
 }
 
 const loginToken = createAsyncThunk<LoginResponse, DataUser>(

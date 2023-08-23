@@ -10,26 +10,23 @@ interface Props {
   data?: any;
 }
 
-const Slider: React.FC<Props> = ({ props, data }) => {
+const SliderProduct: React.FC<Props> = ({ props, data }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const img = useSelector((state: RootState) => state.imgSlider);
+  const [image, setImage] = useState([])
   const dispatch = useAppDispatch();
-
-  const slider = [
-    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img3.jpg?v=174",
-    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img1.jpg?v=174",
-    "https://theme.hstatic.net/1000365849/1000614631/14/ms_banner_img4.jpg?v=174",
-  ];
-
-  const [image, setImage] = useState(slider);
+  useEffect(() => {
+    if(data) {
+      setImage(data)
+    }
+  }, [data]);
 
   useEffect(() => {
-    dispatch(fetchImgSlider())
-  }, []);
-
-  useEffect(() => {
+    setCurrentImage(0)
     const timer = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % image.length);
+      setCurrentImage((prevImage) => (prevImage + 1) % (image.length || 1));
+      console.log(currentImage);
+      
     }, 4000);
     return () => {
       clearInterval(timer);
@@ -42,7 +39,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
 
   const handlePreviousSlider = () => {
     setCurrentImage(
-      (prevImage) => (prevImage - 1 + image.length) % image.length
+      (prevImage) => (prevImage - 1 + data.length) % image.length
     );
   };
 
@@ -51,7 +48,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
   };
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${img[currentImage]})`,
+    backgroundImage: `url(${image[currentImage]})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -76,7 +73,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
       </div>
 
       <div className="flex items-center justify-center ">
-        {img.map((image: any, index: number) =>
+        {image.map((image: string, index: number) =>
           props ? (
             <div
               key={index}
@@ -107,4 +104,4 @@ const Slider: React.FC<Props> = ({ props, data }) => {
   );
 };
 
-export default Slider;
+export default SliderProduct;

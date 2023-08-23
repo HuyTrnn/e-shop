@@ -7,6 +7,7 @@ interface LoginState {
   access_token: any;
   isAuthenticated: boolean;
   isOpen: boolean,
+  isAdmin: boolean;
 }
 
 const initialState: LoginState = {
@@ -15,6 +16,7 @@ const initialState: LoginState = {
   access_token: null,
   isAuthenticated: false,
   isOpen: false,
+  isAdmin: false,
 };
 
 const loginSlice = createSlice({
@@ -34,6 +36,7 @@ const loginSlice = createSlice({
         state.error = null;
         state.isAuthenticated = true;
         state.access_token = action.payload.token;
+        state.isAdmin = action.payload.is_admin;
       })
       .addCase(loginToken.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;

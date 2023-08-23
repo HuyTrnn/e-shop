@@ -3,11 +3,12 @@ import { RootState } from "@/store";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import img from '@/assets/imgs/img_instagram2.jpg'
-
+import logo from '@/assets/imgs/mainlogo.png'
 export const metadata = {
   title: 'About us',
   openGraph: {
     title: 'Blog',
+    images: logo,
   },
 }
 const AboutPage = function () {

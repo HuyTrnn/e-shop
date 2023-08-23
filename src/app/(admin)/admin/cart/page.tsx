@@ -2,14 +2,19 @@
 import TableData from '@/components/Admin/Table'
 import TableContent from '@/components/Admin/TableContent'
 import ButtonSearch from '@/components/Button'
-import React from 'react'
+import { RootState, useAppDispatch } from '@/store'
+import { fetchOrders } from '@/store/thunks/fetchOrder'
+import React, { useEffect } from 'react'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 export default function ListCart() {
+
+
   return (
     <div className="bg-white-600 h-full">
       <div className="flex justify-between">
-        <h2 className="text-3xl font-bold ">List orders</h2>
+        <h2 className="text-3xl font-bold " >List orders</h2>
         <div className="flex gap-6">
           <button className="bg-primary-100 flex items-center justify-center hover:bg-hoverColor rounded-lg text-white-200 h-12 w-[200px]">
             <AiOutlineShoppingCart className="mr-2" /><span>Create new receipt</span>
@@ -18,7 +23,7 @@ export default function ListCart() {
       </div>
       <div className="bg-white-400 mt-10 py-8">
         <div className="flex items-center w-full px-8 mb-6">
-          <ButtonSearch className="w-full" />
+          <ButtonSearch className="w-full" placeholder='Enter cart id or customer name'/>
         </div>
         <div className="border">
           <TableContent />

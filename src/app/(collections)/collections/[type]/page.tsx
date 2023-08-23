@@ -2,9 +2,10 @@ import ListItem from '@/components/ListProducts'
 import React from 'react'
 
 export default function Collection({ params }: { params: { type: string } }) {
+ 
   return (
     <div>
-        <ListItem name={params.type}/>
+        <ListItem name={params.type} type={''} data={undefined}/>
     </div>
   )
 }

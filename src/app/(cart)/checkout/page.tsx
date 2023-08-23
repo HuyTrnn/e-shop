@@ -12,16 +12,18 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import { fetchCart } from "@/store/thunks/fetchCart";
 import { convertVND } from "@/utils/convertToVND";
+import { addOrder } from "@/store/thunks/order";
+import { toast } from "react-toastify";
 
 export default function Checkout() {
   const { prefetch } = useRouter();
   const dispatch = useAppDispatch();
   const bill = useSelector((state: RootState) => state.bill.cartData);
   const [check, setCheck] = useState();
-
+  const router = useRouter();
   useEffect(() => {
     dispatch(fetchCart());
-  },[dispatch])
+  }, [dispatch]);
 
   const {
     register,
@@ -29,13 +31,34 @@ export default function Checkout() {
     reset,
     watch,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "onChange",
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
+    const detail = {
+      cart_id: bill.id,
+      user_id: bill.user_id,
+      receiver_name: getValues("name"),
+      contact_number: getValues("phone"),
+      specific_address: `${
+        getValues("address") +
+        " " +
+        "phường" +
+        " " +
+        getValues("district") +
+        " " +
+        getValues("city") +
+        " " +
+        getValues("province")
+      }`,
+    };
+    dispatch(addOrder(detail)).then(() => {
+      toast.success("Order Success!");
+      router.push("/");
+    });
   };
 
   return (
@@ -147,12 +170,12 @@ export default function Checkout() {
         ) : (
           bill.items.map((item, index) => (
             <>
-              <div>
+              <div key={item.cart_detail_id}>
                 <div key={index} className="flex justify-between">
                   <div className="flex gap-4">
                     <Image
                       alt="product-img"
-                      src={img1}
+                      src={item.image}
                       width={64}
                       height={64}
                     />
@@ -187,7 +210,9 @@ export default function Checkout() {
             <span className="text-primary-200 opacity-80 flex mr-2 justify-center items-center text-sm">
               VND
             </span>
-            <span className="text-xl text-bold">{convertVND(bill.total_price)}</span>
+            <span className="text-xl text-bold">
+              {convertVND(bill.total_price)}
+            </span>
           </div>
         </div>
       </div>
