@@ -6,8 +6,13 @@ import TablePagination from "@mui/material/TablePagination";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+
 export default function TableData({ data }: { data: any }) {
   const [page, setPage] = useState(0);
+  const token = useSelector((state: RootState) => state.login.access_token);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const startIndex = page * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
@@ -30,6 +35,23 @@ export default function TableData({ data }: { data: any }) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const handleDelete = async (id: number) => {
+    try {
+       const response = await axios.delete(`http://blog.test:8080/api/products/${id}`,
+       {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: `application/json`,
+          ContentType: "application/json",
+        },
+      });
+      response && window.confirm("You will delete this product!")
+      window.location.reload();
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
     <div className="flex flex-col">
@@ -95,7 +117,7 @@ export default function TableData({ data }: { data: any }) {
                           <Link href={`/admin/edit/${item.id}`}>
                             <AiOutlineEdit className="cursor-pointer hover:text-hoverColor" />
                           </Link>
-                          <BsFillTrash3Fill className="cursor-pointer  hover:text-hoverColor" />
+                          <BsFillTrash3Fill onClick={() => handleDelete(Number(item.id))} className="cursor-pointer  hover:text-hoverColor" />
                         </div>
                       </td>
                     </tr>
@@ -105,7 +127,7 @@ export default function TableData({ data }: { data: any }) {
             </table>
             <TablePagination
               style={{ fontSize: "16px" }}
-              component="div"
+
               count={data.length}
               page={page}
               onPageChange={handleChangePage}

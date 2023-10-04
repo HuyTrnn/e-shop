@@ -39,11 +39,11 @@ function SideBar() {
           </MenuItem>
         </SubMenu>
         <SubMenu icon={<BsFillPersonFill className="text-hoverColor"/>} label="Customer">
-          <MenuItem component={<Link href="/admin/customers" />}>
-            Staff
+          <MenuItem component={<Link href="/admin/users" />}>
+            User
           </MenuItem>
-          <MenuItem component={<Link href="/admin/staffs" />}>
-            Customer
+          <MenuItem component={<Link href="/admin/add/account" />}>
+            Create admin account
           </MenuItem>
         </SubMenu>
         <SubMenu icon={<TbDiscount2 className="text-hoverColor"/>} label="Products">

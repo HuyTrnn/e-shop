@@ -17,13 +17,13 @@ export default function Layoutadmin({
   const isAdmin = useSelector((state: RootState) => state.login.isAdmin);
   const router = useRouter();
   const pathname = usePathname();
-  useLayoutEffect(() => {
-    if (isAdmin) {
-      router.push("/admin/dashboard");
-    } else {
-      router.push("/");
-    }
-  }, []);
+  // useLayoutEffect(() => {
+  //   if (isAdmin) {
+  //     router.push("/admin/dashboard");
+  //   } else {
+  //     router.push("/");
+  //   }
+  // }, []);
 
   return (
     <div className="">

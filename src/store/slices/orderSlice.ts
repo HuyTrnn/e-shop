@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchImgSlider } from "../thunks/fetchImage";
 import { addOrder } from "../thunks/order";
-import { fetchOrders } from "../thunks/fetchOrder";
+import { fetchOrders, fetchUserOrders } from "../thunks/fetchOrder";
 import { ResponseOrder } from "@/types/types";
+import { fetchOrderDetail } from "../thunks/orderDetail";
 
 const initialState: ResponseOrder = {
     data: [],
     loading: false,
     error: null,
+    detail: null,
 }
 
 const orderSlice = createSlice({
@@ -28,9 +30,36 @@ const orderSlice = createSlice({
       state.data = action.payload;
       state.error = null;
     })
-    .addCase(fetchOrders.rejected, (state, action) => {
+    .addCase(fetchOrders.rejected, (state) => {
       state.loading = false;
-      state.data = null;
+      state.error = true;
+    });
+
+    builder
+    .addCase(fetchOrderDetail.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(fetchOrderDetail.fulfilled, (state, action) => {
+      state.loading = false;
+      state.detail = action.payload;
+      state.error = null;
+    })
+    .addCase(fetchOrderDetail.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    builder
+    .addCase(fetchUserOrders.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(fetchUserOrders.fulfilled, (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+      state.error = null;
+    })
+    .addCase(fetchUserOrders.rejected, (state, action) => {
+      state.loading = false;
       state.error = action.payload;
     });
   },

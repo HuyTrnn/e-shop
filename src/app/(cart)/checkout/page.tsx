@@ -163,9 +163,9 @@ export default function Checkout() {
         <div>
           <h2 className="text-[32px] uppercase mt-5 mb-[15px]">Detail</h2>
         </div>
-        {bill.items.length === 0 ? (
+        {!bill ? (
           <div className="flex justify-center items-center w-[200px]">
-            Loading...
+            Không có sản phẩm nào
           </div>
         ) : (
           bill.items.map((item, index) => (

@@ -16,11 +16,10 @@ const cartSlice = createSlice({
       })
       .addCase(addToCart.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.items.push(action.payload);
+        // state.items.push(action.payload);
       })
-      .addCase(addToCart.rejected, (state, action) => {
+      .addCase(addToCart.rejected, (state) => {
         state.status = "failed";
-        state.error = action.payload;
       });
   },
 });

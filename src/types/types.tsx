@@ -27,22 +27,47 @@ export interface ResponseOrder {
     data: Array<OrderResponse>;
     loading: boolean;
     error: any;
+    detail: OrderResponse | null;
   }
 
 export interface OrderResponse {
+            receipt_id: number;
+            id: any;
             user_name: string,
             email:  string,
             order_detail: [
                 {
+                    image: string ;
+                    receipt_id: number | null | undefined;
                     product_name:  string,
-                    quantity: number,
+                    quantity: number | string,
                     unit_price: number
                 }
             ],
             receiver_name:  string,
+            user_id: number,
             contact_number: number,
             specific_address:  string,
             total_amount: number,
             receipt_status: number
-      
 }
+
+export interface CustomerResponse {
+    message: string;
+    data?: Array<UserDetail>;
+  detail? : UserDetail;
+
+  }
+
+
+  export interface UserDetail {
+    id: string,
+    name: string,
+    phone?: number,
+    address?: string,
+    email?: string,
+    is_admin?: number,
+    created_at?: string,
+    updated_at?: string
+  }
+  

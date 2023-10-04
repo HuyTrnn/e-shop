@@ -7,6 +7,7 @@ import productDetailReducer from "./slices/productDetail";
 import billReducer from "./slices/billSlice"
 import ordersReducer from "./slices/orderSlice"
 import addToCartReducer from "./slices/cartSlice"
+import customerReducer from "./slices/user"
 import { useDispatch } from "react-redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   addToCart: addToCartReducer,
   bill : billReducer,
   orders: ordersReducer,
+  customer: customerReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

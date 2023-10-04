@@ -1,10 +1,13 @@
 "use client";
 import { RootState, useAppDispatch } from "@/store";
 import { fetchOrders } from "@/store/thunks/fetchOrder";
+import { fetchOrderDetail } from "@/store/thunks/orderDetail";
+import { fetchDetailCustomer } from "@/store/thunks/user";
 import { OrderResponse } from "@/types/types";
 import { convertVND } from "@/utils/convertToVND";
 import TablePagination from "@mui/material/TablePagination";
 import { log } from "console";
+import Link from "next/link";
 import React, { ReactEventHandler, useEffect, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsFillTrash3Fill } from "react-icons/bs";
@@ -30,6 +33,11 @@ export default function TableContent() {
     };
     fetchCart();
   }, [dispatch]);
+
+ const getUsers = async (id:number) => {
+  await dispatch(fetchOrderDetail(id));
+ }
+  
 
   function getTotalQuantity(orderDetails: any) {
     let totalQuantity = 0;
@@ -88,7 +96,7 @@ export default function TableContent() {
                       className="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700"
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
-                        {index}
+                        {index + 1}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         <span className="truncate">
@@ -109,8 +117,10 @@ export default function TableContent() {
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         <span className="flex gap-3">
-                          <AiOutlineEdit className="cursor-pointer" />{" "}
-                          <BsFillTrash3Fill className="cursor-pointer" />
+                          <Link onClick={() =>fetchOrderDetail(order.receipt_id)} href={`/admin/cart/${order.receipt_id}`}><AiOutlineEdit className="cursor-pointer" /></Link>
+                          <Link href={`/admin/cart/${order.id}`}>
+                           <BsFillTrash3Fill className="cursor-pointer" />
+                          </Link>
                         </span>
                       </td>
                     </tr>
