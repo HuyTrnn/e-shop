@@ -38,7 +38,7 @@ export default function TableData({ data }: { data: any }) {
 
   const handleDelete = async (id: number) => {
     try {
-       const response = await axios.delete(`http://blog.test:8080/api/products/${id}`,
+       const response = await axios.delete(`https://backpack-nu.vercel.app/api/products/${id}`,
        {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -21,7 +21,7 @@ function Bill({ toggle, onBill }: { toggle: boolean; onBill: any }) {
 
   async function handleDelete(id: number) {
     const response = await axios.delete(
-      `http://blog.test:8080/api/delete-item/${id}`,
+      `https://backpack-nu.vercel.app/api/delete-item/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

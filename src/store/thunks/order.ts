@@ -18,7 +18,7 @@ const addOrder = createAsyncThunk<any, Order>(
       const { access_token } = state.login;
       try {
         const response = await axios.post(
-          "http://blog.test:8080/api/receipts",
+          "https://backpack-nu.vercel.app/api/receipts",
           detail,
           {
             headers: {

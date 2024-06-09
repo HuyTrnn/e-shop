@@ -37,22 +37,22 @@ async function HomePage({ slider }: { slider: any }) {
         <ListItem
           type={"backpacks"}
           name={"Backpacks"}
-          data={img.props.backpacks?.data.data}
+          data={""}
         />
         <ListItem
           type={"wallets"}
           name={"Wallet"}
-          data={img.props.wallets?.data.data}
+          data={""}
         />
         <ListItem
           type={"totes"}
           name={"Tote"}
-          data={img.props.totes?.data.data}
+          data={""}
         />
         <ListItem
           type={"crossbodies"}
           name={"CrossBody"}
-          data={img.props.crossbody?.data.data}
+          data={""}
         />
       </React.Fragment>
     );

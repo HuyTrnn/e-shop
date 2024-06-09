@@ -11,7 +11,7 @@ interface DataUser {
 const register = createAsyncThunk("register", async (dataUser : DataUser) => {
   try {
     const response = await axios.post(
-      "http://blog.test:8080/api/register-customer",
+      "https://backpack-nu.vercel.app/api/register-customer",
       dataUser,
     );
     return response.data;

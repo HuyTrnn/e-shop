@@ -31,7 +31,7 @@ export default function CartDetail({ params }: { params: { slug: number } }) {
 
   const updateStatus = async (props: number) => {
     const res = await axios.put(
-      `http://blog.test:8080/api/receipts/${params.slug}`,
+      `https://backpack-nu.vercel.app/api/receipts/${params.slug}`,
         props
       ,
       {
@@ -48,7 +48,7 @@ export default function CartDetail({ params }: { params: { slug: number } }) {
 
   const updateTest = async (props: number) => {
     const res = await axios.put(
-      `http://blog.test:8080/api/update-status/${params.slug}`,
+      `https://backpack-nu.vercel.app/api/update-status/${params.slug}`,
         props
       ,
       {
@@ -64,7 +64,7 @@ export default function CartDetail({ params }: { params: { slug: number } }) {
 
   const deleteOrder = async () => {
     const res = await axios.delete(
-      `http://blog.test:8080/api/receipts/${params.slug}`,
+      `https://backpack-nu.vercel.app/api/receipts/${params.slug}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

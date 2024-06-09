@@ -22,7 +22,7 @@ export default function Modal({ detail, onToggle }: { detail?: any, onToggle: an
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const res = await axios.put(
-        `http://blog.test:8080/api/receipts/${detail.receipt_id}`,
+        `https://backpack-nu.vercel.app/api/receipts/${detail.receipt_id}`,
         data
         ,
         {

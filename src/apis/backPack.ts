@@ -1,14 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 
-export async function getTypes({param} : {param: string}) {
-    const type = await axios
-        .get(`http://blog.test:8080/api/types/${param}`)
-        // .then(({ data }) =>
-        //     console.log(data)
-        // );
-
-    return {
-        data: type,
-        fallback: false, //Means anything else will 404
-    };
+export async function getTypes({ param } : {param: string}) {
+    try {
+        const response = await axios.get(`https://backpack-nu.vercel.app/api/types/${param}`);
+        return {
+            data: response.data,
+            fallback: false, // Means anything else will 404
+        };
+    } catch (error: any) {
+        console.error('Error fetching data:', error);
+        return {
+            data: null,
+            error: error.message,
+            fallback: false,
+        };
+    }
 }

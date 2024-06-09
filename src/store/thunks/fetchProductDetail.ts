@@ -6,7 +6,7 @@ const fetchProductDetail = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get(
-        `http://blog.test:8080/api/products/${id}`
+        `https://backpack-nu.vercel.app/api/products/${id}`
       );
       return response.data;
     } catch (error: any) {

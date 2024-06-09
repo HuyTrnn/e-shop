@@ -18,7 +18,7 @@ const addToCart = createAsyncThunk<Response, Items>(
     const { access_token } = state.login;
     try {
       const response = await axios.post(
-        "http://blog.test:8080/api/add-to-cart",
+        "https://backpack-nu.vercel.app/api/add-to-cart",
         detail,
         {
           headers: {

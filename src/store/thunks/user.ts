@@ -19,7 +19,7 @@ const updateDetailCustomer = createAsyncThunk<any, {detail : User}>(
     const { access_token } = state.login;
     try {
       const response = await axios.put(
-        `http://blog.test:8080/api/users/${detail.id}`,
+        `https://backpack-nu.vercel.app/api/users/${detail.id}`,
         requestBody,
         {
           headers: {
@@ -43,7 +43,7 @@ const fetchDetailCustomer = createAsyncThunk<UserDetail, number>(
     const { access_token } = state.login;
     try {
       const response = await axios.get(
-        `http://blog.test:8080/api/users/${id}`,
+        `https://backpack-nu.vercel.app/api/users/${id}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,
@@ -67,7 +67,7 @@ const fetchCustomer = createAsyncThunk(
       const { access_token } = state.login;
       try {
         const response = await axios.get(
-          "http://blog.test:8080/api/users",
+          "https://backpack-nu.vercel.app/api/users",
           {
             headers: {
               Authorization: `Bearer ${access_token}`,

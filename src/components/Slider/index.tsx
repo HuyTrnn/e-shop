@@ -76,7 +76,7 @@ const Slider: React.FC<Props> = ({ props, data }) => {
       </div>
 
       <div className="flex items-center justify-center ">
-        {img.map((image: any, index: number) =>
+        {slider.map((image: any, index: number) =>
           props ? (
             <div
               key={index}

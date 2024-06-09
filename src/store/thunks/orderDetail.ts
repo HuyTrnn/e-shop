@@ -9,7 +9,7 @@ const fetchOrderDetail = createAsyncThunk<any, number>(
     const { access_token } = state.login;
     try {
       const response = await axios.get(
-        `http://blog.test:8080/api/receipts/${id}`,
+        `https://backpack-nu.vercel.app/api/receipts/${id}`,
         {
           headers: {
             Authorization: `Bearer ${access_token}`,

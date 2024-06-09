@@ -33,9 +33,9 @@ function ListItem({
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
-  // useEffect(() => {
-  //   dispatch(fetchCollection(type))
-  // },[])
+  useEffect(() => {
+    dispatch(fetchCollection(type))
+  },[])
 
   return (
     <div

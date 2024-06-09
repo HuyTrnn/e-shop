@@ -10,7 +10,7 @@ const fetchOrders = createAsyncThunk<ResponseOrder>(
     const state = thunkAPI.getState() as RootState;
     const { access_token } = state.login;
     try {
-      const response = await axios.get(`http://blog.test:8080/api/receipts`, {
+      const response = await axios.get(`https://backpack-nu.vercel.app/api/receipts`, {
         headers: {
           Authorization: `Bearer ${access_token}`,
           Accept: `application/json`,
@@ -31,7 +31,7 @@ const fetchUserOrders = createAsyncThunk<ResponseOrder>(
     const state = thunkAPI.getState() as RootState;
     const { access_token } = state.login;
     try {
-      const response = await axios.get(`http://blog.test:8080/api/all-receipt-customer`, {
+      const response = await axios.get(`https://backpack-nu.vercel.app/api/all-receipt-customer`, {
         headers: {
           Authorization: `Bearer ${access_token}`,
           Accept: `application/json`,

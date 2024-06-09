@@ -52,7 +52,7 @@ const FormItem = ({ data }: { data?: ProductsDetail }) => {
 
   const onSubmit = async (result: any) => {
     if (data) {
-      await axios.put(`http://blog.test:8080/api/products/${data.id}`, result, {
+      await axios.put(`https://backpack-nu.vercel.app/api/products/${data.id}`, result, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: `application/json`,
@@ -60,7 +60,7 @@ const FormItem = ({ data }: { data?: ProductsDetail }) => {
         },
       });
     } else {
-      await axios.post(`http://blog.test:8080/api/products/`, result, {
+      await axios.post(`https://backpack-nu.vercel.app/api/products/`, result, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: `application/json`,

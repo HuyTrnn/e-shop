@@ -6,7 +6,7 @@ const fetchCollection = createAsyncThunk(
   async (types : string) => {
     try {
       const response = await axios.get(
-        `http://blog.test:8080/api/types/${types}`
+        `https://backpack-nu.vercel.app/api/types/${types}`
       );
       return response.data;
     } catch (error: any) {
